@@ -13,6 +13,7 @@ import alias from "@rollup/plugin-alias";
 import panda from "@pandacss/dev/postcss";
 import cascade from "@csstools/postcss-cascade-layers";
 import { dts } from "rollup-plugin-dts";
+import uno from "@unocss/postcss";
 
 const pkg = JSON.parse(
   fs.readFileSync(path.resolve(process.cwd(), "./package.json"), {
@@ -54,9 +55,9 @@ const plugins = [
   }),
   url(),
   postcss({
-    plugins: [panda(), cascade()],
+    plugins: [panda(), cascade(), uno()],
     minimize: true,
-    extract: "index.css",
+    inject: true,
   }),
 ];
 
